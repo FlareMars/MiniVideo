@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        gomo {
+            keyAlias 'gomo'
+            keyPassword 'gomogomo'
+            storeFile file('../files/minivideo.jks')
+            storePassword 'gomogomo'
+        }
+    }
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
     defaultConfig {
@@ -13,8 +21,12 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.gomo
+        }
+        debug {
+            signingConfig signingConfigs.gomo
         }
     }
 }
