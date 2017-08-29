@@ -82,4 +82,7 @@ public class ZCameraUtil {
 		}
 	}
 
+	public static boolean checkBits(int status, int checkBit) {
+		return (status & checkBit) == checkBit;
+	}
 }

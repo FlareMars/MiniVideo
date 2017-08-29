@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -589,6 +590,19 @@ public class BitmapUtils {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public static void mapPoints(Matrix matrix, float[] points) {
+        float[] m = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F };
+        matrix.getValues(m);
+
+        points[0] = (points[0] * m[0] + m[2]);
+        points[1] = (points[1] * m[4] + m[5]);
+
+        if (points.length == 4) {
+            points[2] = (points[2] * m[0] + m[2]);
+            points[3] = (points[3] * m[4] + m[5]);
         }
     }
 }

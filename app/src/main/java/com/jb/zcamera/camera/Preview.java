@@ -61,6 +61,7 @@ import com.jb.zcamera.imagefilter.filter.GPUImageFilter;
 import com.jb.zcamera.imagefilter.filter.GPUImageFilterGroup;
 import com.jb.zcamera.imagefilter.filter.GPUImageHDRFilter;
 import com.jb.zcamera.imagefilter.filter.GPUImageHDROESFilter;
+import com.jb.zcamera.imagefilter.filter.GPUImageNormalBlendFilter;
 import com.jb.zcamera.imagefilter.filter.GPUImageOESFilter;
 import com.jb.zcamera.imagefilter.util.ImageFilterTools;
 import com.jb.zcamera.utils.BitmapUtils;
@@ -4085,7 +4086,7 @@ public class Preview implements SurfaceHolder.Callback {
 
 	private GPUImageFilter createFilter() {
 		GPUImageFilter filter = null;
-		if (mFilterId == -1) {
+		if (!activity.hasStickers() && mFilterId == -1) {
 			filter = getDefalutFilter();
 		} else if (mFilterId == -2) {
 			filter = new GPUImageBeautyFilter();
@@ -4096,6 +4097,14 @@ public class Preview implements SurfaceHolder.Callback {
 				GPUImageFilterGroup filterGroup = new GPUImageFilterGroup();
 				filterGroup.addFilter(new GPUImageOESFilter());
 				filterGroup.addFilter(filter);
+
+				Bitmap stickerBmp = activity.getStickerBitmap();
+				if (stickerBmp != null) {
+					GPUImageNormalBlendFilter stickerFilter = new GPUImageNormalBlendFilter();
+					stickerFilter.setBitmap(stickerBmp);
+					filterGroup.addFilter(stickerFilter);
+				}
+
 				filter = filterGroup;
 			}
 		}
@@ -4121,7 +4130,7 @@ public class Preview implements SurfaceHolder.Callback {
      * @return
      */
     public boolean isFiltMode() {
-        return mFilterId >= 0 || gpuImage.hasEffect() || gpuImage.hasHDREffect();
+        return mFilterId >= 0 || gpuImage.hasEffect() || gpuImage.hasHDREffect() || activity.hasStickers();
     }
 
 	public boolean isFiltModeNotEffect() {
