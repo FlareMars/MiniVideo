@@ -1,0 +1,43 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="CameraTheme" parent="CameraTheme.Base"/>
+
+    <style name="CameraTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/windowBackgroundColor</item>
+        <item name="colorPrimaryDark">@color/windowBackgroundColor</item>
+        <item name="colorAccent">@color/accent_color</item>
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@color/windowBackgroundColor</item>
+
+        <!-- Dialog attributes -->
+        <item name="dialogTheme">@style/Theme.AppCompat.Light.Dialog</item>
+
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+
+        <item name="colorControlNormal">#888888</item>
+        <item name="colorControlActivated">@color/accent_color</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="buttonBarButtonStyle">@style/ButtonBarButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/ButtonBarButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/ButtonBarButtonStyle</item>
+        <item name="buttonBarNeutralButtonStyle">@style/ButtonBarButtonStyle</item>
+    </style>
+
+    <style name="ButtonBarButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/accent_color</item>
+    </style>
+
+</resources>

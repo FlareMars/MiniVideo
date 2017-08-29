@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="filter_store_default_color">#EFEFEF</color>
+
+    <color name="windowBackgroundColor">#0d0d0d</color>
+
+    <!-- 主题 -->
+    <color name="primary_color">#0d0d0d</color>
+    <color name="accent_color">#14BCFF</color>
+    <color name="default_color">#FFFFFF</color>
+    <color name="main_bg_color">#000000</color>
+    <drawable name="primary_color">#0d0d0d</drawable>
+    <drawable name="accent_color">#14BCFF</drawable>
+    <drawable name="default_color">#FFFFFF</drawable>
+    <drawable name="main_bg_color">#0d0d0d</drawable>
+</resources>
