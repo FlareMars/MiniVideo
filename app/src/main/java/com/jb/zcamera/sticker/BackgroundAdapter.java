@@ -79,10 +79,11 @@ public class BackgroundAdapter extends RecyclerView.Adapter<BackgroundAdapter.Vi
 	public void onBindViewHolder(ViewHolder holder, final int position) {
 		final LocalBackgroundBO item = mData.get(position);
 		holder.itemView.setSelected(mSelectedPosition == position);
-		holder.backgroundTextView.setText(item.getName());
 		if (ORIGINAL_POSITION == position) {
+			holder.backgroundTextView.setText(item.getName());
 			holder.backgroundImageView.setImageResource(R.drawable.filter_original);
 		} else {
+			holder.backgroundTextView.setText("");
 			holder.backgroundImageView.setImageResource(item.getResourceId());
 		}
 		holder.itemView.setTag(position);

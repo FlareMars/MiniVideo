@@ -30,9 +30,17 @@
         android:scaleType="matrix" />
 
     <View
+        android:id="@+id/touch_event_interceptor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+
+    <View
         android:id="@+id/preview_overlay"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:background="#0d0d0d"
         android:visibility="gone"/>
 
     <LinearLayout
@@ -100,6 +108,17 @@
         </FrameLayout>
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/camera_change_button"
+        android:layout_width="@dimen/main_icon_size"
+        android:layout_height="@dimen/main_icon_size"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/main_icon_bg_selector"
+        android:scaleType="centerInside"
+        android:src="@drawable/camera_swtich_camera"
+        />
 
     <LinearLayout
         android:id="@+id/panel_filters"

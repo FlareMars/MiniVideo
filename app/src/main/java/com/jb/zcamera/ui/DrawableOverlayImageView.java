@@ -445,6 +445,7 @@ public class DrawableOverlayImageView extends ImageViewTouch {
             hv.dispose();
         }
         mOverlayView = null;
+        postInvalidate();
     }
 
     public boolean addHighlightView(MyHighlightView hv) {

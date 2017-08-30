@@ -1,5 +1,7 @@
 package com.gomo.minivideo.camera;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -70,8 +72,13 @@ public class CameraFragment extends Fragment {
 
     private FrameLayout mPreviewContainer;
     private View mPreviewOverlay;
+    private ObjectAnimator mOverlayVisibleAnimator;
+    private ObjectAnimator mOverlayGoneAnimator;
+
+    private View mTouchEventInterceptor;
     private TextView mVideoTime = null;
     private TextView mShowTextView = null;
+    private ImageView mChangeCameraButton = null;
     private ImageView mTakeVideoButton = null;
     private ImageView mCloseFiltersButton = null;
     private ImageView mCloseStickersButton = null;
@@ -230,7 +237,9 @@ public class CameraFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mPreviewContainer = view.findViewById(R.id.preview);
+        mTouchEventInterceptor = view.findViewById(R.id.touch_event_interceptor);
         mPreviewOverlay = view.findViewById(R.id.preview_overlay);
+        mChangeCameraButton = view.findViewById(R.id.camera_change_button);
         mTakeVideoButton = view.findViewById(R.id.take_video);
         mFiltersListView = view.findViewById(R.id.filter_list_view);
         mStickersListView = view.findViewById(R.id.sticker_list_view);
@@ -251,10 +260,12 @@ public class CameraFragment extends Fragment {
     }
 
     private void initViews(Bundle savedInstanceState) {
+        mTouchEventInterceptor.setAlpha(0f);
+        mTouchEventInterceptor.setVisibility(View.GONE);
         mPreviewOverlay.setAlpha(0f);
         mPreviewOverlay.setVisibility(View.GONE);
         // 专门用于拦截touch事件
-        mPreviewOverlay.setOnTouchListener(new View.OnTouchListener() {
+        mTouchEventInterceptor.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 return true;
@@ -289,6 +300,19 @@ public class CameraFragment extends Fragment {
         mStickersListView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         mStickersListView.setAdapter(mStickerAdapter);
         mStickerAdapter.setOnItemClickListener(mOnStickerClickedListener);
+
+        mChangeCameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearAllEffect();
+                startOverlayVisible(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPreview.toggleSwitchCamera();
+                    }
+                });
+            }
+        });
 
         mCloseStickersButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -353,6 +377,13 @@ public class CameraFragment extends Fragment {
         result.add(new LocalStickerBO("sticker1", R.drawable.emoji_73));
         result.add(new LocalStickerBO("sticker2", R.drawable.emoji_11));
         return result;
+    }
+
+    private void clearAllEffect() {
+        mFilterAdapter.setSelectItemPosition(0);
+        mBackgroundAdapter.setSelectItemPosition(0);
+        mOverlayImageView.clearOverlays();
+        mPreview.switchFilter(-1);
     }
 
     private void addSticker(Bitmap stickerBitmap, boolean isBackground) {
@@ -483,6 +514,110 @@ public class CameraFragment extends Fragment {
         mPreview.onStart();
     }
 
+    private void startOverlayVisible(final Runnable runnable) {
+        if (mOverlayGoneAnimator != null) {
+            mOverlayGoneAnimator.cancel();
+        }
+        if (mOverlayVisibleAnimator != null && mOverlayVisibleAnimator.isRunning()) {
+            mOverlayVisibleAnimator.removeAllListeners();
+            mOverlayVisibleAnimator.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+            });
+        } else if (mPreviewOverlay.getVisibility() == View.VISIBLE && mPreviewOverlay.getAlpha() == 1.0f) {
+            if (runnable != null) {
+                runnable.run();
+            }
+        } else {
+            mPreviewOverlay.setVisibility(View.VISIBLE);
+            mOverlayVisibleAnimator = ObjectAnimator.ofFloat(mPreviewOverlay, "alpha", 0f, 1.0f);
+            mOverlayVisibleAnimator.setDuration(300);
+            mOverlayVisibleAnimator.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+            });
+            mOverlayVisibleAnimator.start();
+        }
+    }
+
+    public void startOverlayGone() {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mPreviewOverlay.getVisibility() == View.VISIBLE) {
+                    if (mOverlayVisibleAnimator != null) {
+                        mOverlayVisibleAnimator.cancel();
+                    }
+                    if (mOverlayGoneAnimator == null || !mOverlayGoneAnimator.isRunning()) {
+                        mOverlayGoneAnimator = ObjectAnimator.ofFloat(mPreviewOverlay, "alpha", 1f, 0f);
+                        mOverlayGoneAnimator.setDuration(300);
+                        mOverlayGoneAnimator.addListener(new Animator.AnimatorListener() {
+                            @Override
+                            public void onAnimationStart(Animator animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                mPreviewOverlay.setAlpha(0);
+                                mPreviewOverlay.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animator animation) {
+
+                            }
+                        });
+                        mOverlayGoneAnimator.start();
+                    }
+                }
+            }
+        });
+    }
+
     private void useVideoFile(String filePath) {
         Toast.makeText(getContext(), filePath, Toast.LENGTH_SHORT).show();
     }
@@ -571,10 +706,6 @@ public class CameraFragment extends Fragment {
 
     }
 
-    public void startOverlayGone() {
-
-    }
-
     public void updateFlashButton() {
 
     }
@@ -615,7 +746,7 @@ public class CameraFragment extends Fragment {
     public void changeUIForStartVideo(boolean isStart) {
         if (isStart) {
             if (mPreview.isVideo()) {
-                mPreviewOverlay.setVisibility(View.VISIBLE);
+                mTouchEventInterceptor.setVisibility(View.VISIBLE);
                 mFiltersButton.setVisibility(View.INVISIBLE);
                 mStickersButton.setVisibility(View.INVISIBLE);
                 mBackgroundsButton.setVisibility(View.INVISIBLE);
@@ -623,7 +754,7 @@ public class CameraFragment extends Fragment {
             }
         } else {
             if (mPreview.isVideo()) {
-                mPreviewOverlay.setVisibility(View.GONE);
+                mTouchEventInterceptor.setVisibility(View.GONE);
                 mFiltersButton.setVisibility(View.VISIBLE);
                 mStickersButton.setVisibility(View.VISIBLE);
                 mBackgroundsButton.setVisibility(View.VISIBLE);

@@ -17,4 +17,6 @@
     <drawable name="accent_color">#14BCFF</drawable>
     <drawable name="default_color">#FFFFFF</drawable>
     <drawable name="main_bg_color">#0d0d0d</drawable>
+
+    <color name="main_icon_select_background_color">#33ffffff</color>
 </resources>
