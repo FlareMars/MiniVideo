@@ -32,29 +32,17 @@ public class ImageFilterTools {
     public static final String[] FILTER_IMAGE_URL = new String[]{
             "filter_snow",
             "filter_eastern",
-            "filter_earlybird",
             "filter_am",
             "filter_680",
             "filter_breeze",
-            "filter_cool",
-            "filter_ortho",
-            "filter_rosy",
-            "filter_at3",
-            "filter_polaroid"
     };
 
     public static final String[] FILTER_STRING = new String[]{
             "Snow",
             "Sunrise",
-            "Dawn",
             "Elapse",
             "Quiet",
-            "Soft",
-            "Cool",
-            "Pale",
-            "Rosy",
-            "Wine",
-            "Polaroid"
+            "Soft"
     };
 
     /**
@@ -63,29 +51,17 @@ public class ImageFilterTools {
     public static final int[] FILTER_MAPID = new int[] {
             102090513,
             12110640,
-            12123554,
             12123556,
             12110638,
-            12123564,
-            12110598,
-            12110637,
-            12110639,
-            12123570,
-            12110885
+            12123564
     };
 
     private static final float[] FLTER_INTENSITY = new float[]{
             0,
             0.7f,
-            0,
             0.7f,
             0.7f,
-            0.7f,
-            0.8f,
-            1,
-            1,
-            0.7f,
-            1
+            0.7f
     };
 
     /**
@@ -94,44 +70,26 @@ public class ImageFilterTools {
     public static final String[] FILTER_PACKAGE_NAME = new String[] {
             "com.jb.zcamera.imagefilter.plugins.snow",
             "com.jb.zcamera.imagefilter.plugins.sunrise",
-            "com.jb.zcamera.imagefilter.plugins.dawn",
             "com.jb.zcamera.imagefilter.plugins.elapse",
             "com.jb.zcamera.imagefilter.plugins.quiet",
-            "com.jb.zcamera.imagefilter.plugins.soft",
-            "com.jb.zcamera.imagefilter.plugins.cool",
-            "com.jb.zcamera.imagefilter.plugins.pale",
-            "com.jb.zcamera.imagefilter.plugins.rosy",
-            "com.jb.zcamera.imagefilter.plugins.wine",
-            "com.jb.zcamera.imagefilter.plugins.polaroid"
+            "com.jb.zcamera.imagefilter.plugins.soft"
     };
 
 
     private static final int[] FILTER_RESOURCE = new int[] {
             0,
             R.drawable.sunrise,
-            0,
             R.drawable.elapse,
             R.drawable.quiet,
-            R.drawable.soft,
-            R.drawable.cool,
-            R.drawable.pale,
-            R.drawable.rosy,
-            R.drawable.wine,
-            R.drawable.polaroid
+            R.drawable.soft
     };
 
     public static final int[] FILTER_IMAGE = new int[]{
             R.drawable.filter_snow,
             R.drawable.filter_sunrise,
-            R.drawable.filter_dawn,
             R.drawable.filter_elapse,
             R.drawable.filter_quiet,
-            R.drawable.filter_soft,
-            R.drawable.filter_cool,
-            R.drawable.filter_pale,
-            R.drawable.filter_rosy,
-            R.drawable.filter_wine,
-            R.drawable.filter_polaroid,
+            R.drawable.filter_soft
     };
 
     /**

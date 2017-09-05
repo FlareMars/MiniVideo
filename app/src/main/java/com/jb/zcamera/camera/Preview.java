@@ -2887,7 +2887,7 @@ public class Preview implements SurfaceHolder.Callback {
 			
 				Log.d(TAG, "save to: " + video_name);
 			CamcorderProfile profile = getCamcorderProfile();
-			gpuImage.startRecording(createFilter(), isDadTwoInputFilter(), ui_rotation, videoFile,
+			gpuImage.startRecording(createFilter(true), isDadTwoInputFilter(), ui_rotation, videoFile,
 					profile, null, !isMotion());
 			
 			Log.d(TAG, "video recorder started");
@@ -4084,9 +4084,9 @@ public class Preview implements SurfaceHolder.Callback {
 		activity.updateHdrButton(false);
     }
 
-	private GPUImageFilter createFilter() {
+	private GPUImageFilter createFilter(boolean isStartRecording) {
 		GPUImageFilter filter = null;
-		if (!activity.hasStickers() && mFilterId == -1) {
+		if (!activity.hasStickers() && !activity.hasBackground() && mFilterId == -1) {
 			filter = getDefalutFilter();
 		} else if (mFilterId == -2) {
 			filter = new GPUImageBeautyFilter();
@@ -4098,17 +4098,30 @@ public class Preview implements SurfaceHolder.Callback {
 				filterGroup.addFilter(new GPUImageOESFilter());
 				filterGroup.addFilter(filter);
 
-				Bitmap stickerBmp = activity.getStickerBitmap();
-				if (stickerBmp != null) {
-					GPUImageNormalBlendFilter stickerFilter = new GPUImageNormalBlendFilter();
-					stickerFilter.setBitmap(stickerBmp);
-					filterGroup.addFilter(stickerFilter);
+				if (isStartRecording) {
+					List<String> backgroundBitmaps = activity.getBackgroundBitmaps();
+					if (backgroundBitmaps != null && backgroundBitmaps.size() > 0) {
+						GPUImageNormalBlendFilter backgroundFilter = new GPUImageNormalBlendFilter();
+						backgroundFilter.setBitmapList(backgroundBitmaps);
+						filterGroup.addFilter(backgroundFilter);
+					}
+
+					String stickerBitmap = activity.getStickerBitmap();
+					if (stickerBitmap != null) {
+						GPUImageNormalBlendFilter stickerFilter = new GPUImageNormalBlendFilter();
+						stickerFilter.setBitmap(BitmapFactory.decodeFile(stickerBitmap));
+						filterGroup.addFilter(stickerFilter);
+					}
 				}
 
 				filter = filterGroup;
 			}
 		}
 		return filter;
+	}
+
+	private GPUImageFilter createFilter() {
+		return createFilter(false);
 	}
 
 	private boolean isDadTwoInputFilter() {
@@ -4130,7 +4143,7 @@ public class Preview implements SurfaceHolder.Callback {
      * @return
      */
     public boolean isFiltMode() {
-        return mFilterId >= 0 || gpuImage.hasEffect() || gpuImage.hasHDREffect() || activity.hasStickers();
+        return mFilterId >= 0 || gpuImage.hasEffect() || gpuImage.hasHDREffect() || activity.hasStickers() || activity.hasBackground();
     }
 
 	public boolean isFiltModeNotEffect() {

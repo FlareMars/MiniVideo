@@ -17,6 +17,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -53,10 +54,17 @@ import com.jb.zcamera.ui.MyHighlightView;
 import com.jb.zcamera.ui.drawable.StickerDrawable;
 import com.jb.zcamera.utils.BitmapUtils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import static com.gomo.minivideo.MainActivity.ANIM_BGS_DIR;
 
 /**
  * Created by ruanjiewei on 2017/8/27
@@ -65,6 +73,7 @@ import java.util.Locale;
 public class CameraFragment extends Fragment {
 
     private static final String TAG = "CameraFragment";
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA);
 
     public static final int MESSAGE_SHOW_ZOOMLAYOUT = 3;
     public static final int MESSAGE_SHOW_TOAST = 10;
@@ -105,6 +114,9 @@ public class CameraFragment extends Fragment {
 
     private int mCurrentOrientation = 0;
 
+    private Handler mMainHandler;
+    private boolean mIsRunning = false;
+    private int mCurIndex = 0;
     private SensorHelper mSensorHelper;
     private OrientationEventListener mOrientationEventListener = null;
 
@@ -166,6 +178,8 @@ public class CameraFragment extends Fragment {
             if (mBackgroundAdapter.setSelectItemPosition(position)) {
                 if (position == BackgroundAdapter.ORIGINAL_POSITION) {
                     if (mOverlayImageView.getHighlightCount() > 0) {
+                        mIsRunning = false;
+                        mCurIndex = 0;
                         MyHighlightView background = mOverlayImageView.getHighlightViewAt(0);
                         if (!background.isSelectable()) {
                             mOverlayImageView.removeHightlightView(background);
@@ -173,7 +187,8 @@ public class CameraFragment extends Fragment {
                         }
                     }
                 } else {
-                    addSticker(BitmapFactory.decodeResource(getResources(), item.getResourceId()), true);
+                    mIsRunning = true;
+                    mMainHandler.postDelayed(mTestStickerRunnable, 100);
                 }
             }
         }
@@ -229,6 +244,7 @@ public class CameraFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mMainHandler = new Handler(Looper.getMainLooper());
         return inflater.inflate(R.layout.camera_fragment_layout, container, false);
     }
 
@@ -490,6 +506,9 @@ public class CameraFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         mPreview.onDestroy();
+        mIsRunning = false;
+        mCurIndex = 0;
+        mMainHandler.removeCallbacksAndMessages(null);
     }
 
     @Override
@@ -729,18 +748,78 @@ public class CameraFragment extends Fragment {
     }
 
     public boolean hasStickers() {
-        return mOverlayImageView.getHighlightCount() > 0;
+        int size = mOverlayImageView.getHighlightCount();
+        if (hasBackground()) {
+            size--;
+        }
+        return size > 0;
     }
 
-    public Bitmap getStickerBitmap() {
+    public boolean hasBackground() {
+        return mOverlayImageView.getHighlightCount() > 0 && !mOverlayImageView.getHighlightViewAt(0).isSelectable();
+    }
+
+    private static List<String> mTestStickerBitmaps = new ArrayList<>();
+
+    private Runnable mTestStickerRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mIsRunning) {
+                addSticker(BitmapFactory.decodeFile(mTestStickerBitmaps.get(mCurIndex++)), true);
+                if (mCurIndex == mTestStickerBitmaps.size()) {
+                    mCurIndex = 0;
+                }
+                mMainHandler.postDelayed(this, 30);
+            }
+        }
+    };
+
+    static {
+        for (int i = 0; i <= 40; i++) {
+            if (i < 10) {
+                mTestStickerBitmaps.add(ANIM_BGS_DIR + "magazine_0000" + i + ".png");
+            } else {
+                mTestStickerBitmaps.add(ANIM_BGS_DIR + "magazine_000" + i + ".png");
+            }
+        }
+    }
+
+    public String getStickerBitmap() {
         if (hasStickers()) {
             mOverlayImageView.setSelectedHighlightView(null);
             Bitmap bitmap = Bitmap.createBitmap(mOverlayImageView.getWidth(), mOverlayImageView.getHeight(), Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmap);
-            mOverlayImageView.draw(canvas);
-            return bitmap;
+            mOverlayImageView.draw(canvas, false);
+            String dstFile = clearAndGetTempBitmapsPath() + DATE_FORMAT.format(new Date()) + ".png";
+            try {
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(dstFile));
+                return dstFile;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
         return null;
+    }
+
+    public List<String> getBackgroundBitmaps() {
+        if (hasBackground()) {
+            return new ArrayList<>(mTestStickerBitmaps);
+        }
+        return null;
+    }
+
+    private String clearAndGetTempBitmapsPath() {
+        File tempBitmapsDir = new File(getContext().getCacheDir().getAbsolutePath(), "bitmaps");
+        if (!tempBitmapsDir.exists()) {
+            tempBitmapsDir.mkdirs();
+        } else {
+            File[] tempFiles = tempBitmapsDir.listFiles();
+            for (File temp : tempFiles) {
+                temp.delete();
+            }
+        }
+
+        return tempBitmapsDir.getAbsolutePath() + File.separator;
     }
 
     public void changeUIForStartVideo(boolean isStart) {

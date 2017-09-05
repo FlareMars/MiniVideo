@@ -12,11 +12,11 @@ public class DawnFilter extends GPUImageMultiInputFilter {
 	public DawnFilter(Context context) {
 		super(VERTEX_SHADER, FRAG, "a", "b", "c", "d", "e");
 		Resources resources = context.getResources();
-		setBitmap(1, BitmapFactory.decodeResource(resources, R.drawable.dawn3));
-		setBitmap(2, BitmapFactory.decodeResource(resources, R.drawable.dawn2));
-		setBitmap(3, BitmapFactory.decodeResource(resources, R.drawable.dawn5));
-		setBitmap(4, BitmapFactory.decodeResource(resources, R.drawable.dawn4));
-		setBitmap(5, BitmapFactory.decodeResource(resources, R.drawable.dawn1));
+//		setBitmap(1, BitmapFactory.decodeResource(resources, R.drawable.dawn3));
+//		setBitmap(2, BitmapFactory.decodeResource(resources, R.drawable.dawn2));
+//		setBitmap(3, BitmapFactory.decodeResource(resources, R.drawable.dawn5));
+//		setBitmap(4, BitmapFactory.decodeResource(resources, R.drawable.dawn4));
+//		setBitmap(5, BitmapFactory.decodeResource(resources, R.drawable.dawn1));
 	}
 
 	private final static String FRAG =

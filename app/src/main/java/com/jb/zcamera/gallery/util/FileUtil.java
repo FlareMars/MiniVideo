@@ -42,6 +42,8 @@ public class FileUtil {
     public static final String APP_DIR = "ZEROSMS";
     
     public static final String CACHE_DIR = "dir";
+
+    public static final String ANIMATION_BG_DIR = "anim_bg";
     
 	/**
 	 * 获取压缩包中的单个文件InputStream

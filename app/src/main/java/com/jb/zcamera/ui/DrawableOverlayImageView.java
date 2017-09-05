@@ -402,6 +402,13 @@ public class DrawableOverlayImageView extends ImageViewTouch {
         return super.onFling(e1, e2, velocityX, velocityY);
     }
 
+    private boolean mDrawBackground = true;
+
+    public void draw(Canvas canvas, boolean drawBackground) {
+        mDrawBackground = drawBackground;
+        super.draw(canvas);
+    }
+
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -412,7 +419,12 @@ public class DrawableOverlayImageView extends ImageViewTouch {
             canvas.save(Canvas.MATRIX_SAVE_FLAG);
 
             MyHighlightView current = mOverlayViews.get(i);
-            current.draw(canvas);
+            if (!current.isSelectable() && !mDrawBackground) {
+                Log.i("StickerDraw", "onDraw: skip background");
+                mDrawBackground = true;
+            } else {
+                current.draw(canvas);
+            }
 
             // check if we should invalidate again the canvas
             if (!shouldInvalidateAfter) {
