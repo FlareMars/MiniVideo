@@ -36,16 +36,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/CameraTheme">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" android:host="www.android.com" />
-                <data android:scheme="https" android:host="www.android.com" />
+
+                <data
+                    android:host="www.android.com"
+                    android:scheme="http" />
+                <data
+                    android:host="www.android.com"
+                    android:scheme="https" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,6 +62,9 @@
         </activity>
 
         <service android:name="com.jb.zcamera.camera.ProcessVideoService" />
+
+        <activity android:name=".camera.ShareActivity" />
+        <activity android:name=".camera.VideoViewActivity"></activity>
     </application>
 
 </manifest>

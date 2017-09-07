@@ -638,7 +638,8 @@ public class CameraFragment extends Fragment {
     }
 
     private void useVideoFile(String filePath) {
-        Toast.makeText(getContext(), filePath, Toast.LENGTH_SHORT).show();
+        Intent intent = ShareActivity.getIntent(getContext(), filePath);
+        startActivity(intent);
     }
 
     /**

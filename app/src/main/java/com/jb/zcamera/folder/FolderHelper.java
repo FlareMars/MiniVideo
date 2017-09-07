@@ -91,6 +91,10 @@ public class FolderHelper {
         return getImageFolder(folder_name);
     }
 
+    public static File getTempFolder(Context context) {
+        return new File(MEDIA_TEMP_FOLDER_PATH);
+    }
+
     public static File getTempFolder() {
         return new File(MEDIA_TEMP_FOLDER_PATH);
     }
@@ -101,14 +105,7 @@ public class FolderHelper {
         // To be safe, you should check that the SDCard is mounted
         // using Environment.getExternalStorageState() before doing this.
 
-        File mediaStorageDir = getImageFolder();
-
-        if (type == MEDIA_TYPE_VIDEO || type == MEDIA_TYPE_DYNAMIC || type == MEDIA_TYPE_GIF) {
-            if (PhoneInfo.isSupportWriteExtSdCard()
-                    && ExtSdcardUtils.isExtSdcardPath(mediaStorageDir.getAbsolutePath())) {
-                mediaStorageDir = getTempFolder();
-            }
-        }
+        File mediaStorageDir = new File(context.getFilesDir(), "videos");
 
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists()) {
