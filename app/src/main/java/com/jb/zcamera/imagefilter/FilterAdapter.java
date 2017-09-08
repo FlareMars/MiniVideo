@@ -2,23 +2,15 @@ package com.jb.zcamera.imagefilter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.gomo.minivideo.R;
 import com.jb.zcamera.filterstore.bo.LocalFilterBO;
-import com.jb.zcamera.imagefilter.util.ImageFilterTools;
+import com.pixelslab.stickerpe.R;
 
 import java.util.List;
 

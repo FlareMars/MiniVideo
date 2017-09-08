@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.gomo.minivideo.R;
-import com.jb.zcamera.filterstore.bo.LocalFilterBO;
+import com.pixelslab.stickerpe.R;
 
 import java.util.List;
 

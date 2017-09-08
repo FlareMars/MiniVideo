@@ -5,9 +5,9 @@ import android.opengl.GLES20;
 import android.os.SystemClock;
 
 import com.gomo.minivideo.CameraApp;
-import com.gomo.minivideo.R;
 import com.jb.zcamera.image.ImageHelper;
 import com.jb.zcamera.imagefilter.util.OpenGlUtils;
+import com.pixelslab.stickerpe.R;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

@@ -9,11 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.gomo.minivideo.R;
+import com.pixelslab.stickerpe.R;
 
 import java.util.List;
-
-import static com.jb.zcamera.imagefilter.util.ImageFilterTools.FILTER_NAME_TO_DRAWABLE_RESOURCE;
 
 /**
  *

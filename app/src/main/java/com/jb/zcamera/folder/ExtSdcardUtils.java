@@ -21,9 +21,9 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 
 import com.gomo.minivideo.CameraApp;
-import com.gomo.minivideo.R;
 import com.jb.zcamera.gallery.util.FileUtil;
 import com.jb.zcamera.gallery.util.FolderTools;
+import com.pixelslab.stickerpe.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;

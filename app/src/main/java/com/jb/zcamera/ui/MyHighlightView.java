@@ -14,13 +14,13 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 
 import com.gomo.minivideo.CameraApp;
-import com.gomo.minivideo.R;
 import com.jb.zcamera.image.ImageHelper;
 import com.jb.zcamera.ui.drawable.EditableDrawable;
 import com.jb.zcamera.ui.drawable.FeatherDrawable;
 import com.jb.zcamera.ui.imagezoom.ImageViewTouch;
 import com.jb.zcamera.utils.Point2D;
 import com.jb.zcamera.utils.ZCameraUtil;
+import com.pixelslab.stickerpe.R;
 
 public class MyHighlightView implements EditableDrawable.OnSizeChange {
 

@@ -9,7 +9,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
 import com.gomo.minivideo.CameraApp;
-import com.gomo.minivideo.R;
+import com.pixelslab.stickerpe.R;
 
 /**
  * 

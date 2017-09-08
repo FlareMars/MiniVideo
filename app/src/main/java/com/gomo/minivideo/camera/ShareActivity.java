@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.gomo.minivideo.R;
+import com.pixelslab.stickerpe.R;
 
 public class ShareActivity extends AppCompatActivity {
 

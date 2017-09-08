@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.PointF;
 import android.util.Log;
 
-import com.gomo.minivideo.R;
 import com.jb.zcamera.filterstore.bo.LocalFilterBO;
 import com.jb.zcamera.filterstore.db.FilterDBUtils;
 import com.jb.zcamera.imagefilter.filter.DawnFilter;
@@ -15,6 +14,7 @@ import com.jb.zcamera.imagefilter.filter.GPUImageFilterGroup;
 import com.jb.zcamera.imagefilter.filter.GPUImageLookupFilter;
 import com.jb.zcamera.imagefilter.filter.GPUImagePointDownFilter;
 import com.jb.zcamera.imagefilter.filter.GPUImageVignetteFilter;
+import com.pixelslab.stickerpe.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

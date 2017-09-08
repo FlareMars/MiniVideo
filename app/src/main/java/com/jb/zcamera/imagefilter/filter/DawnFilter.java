@@ -2,10 +2,6 @@ package com.jb.zcamera.imagefilter.filter;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.BitmapFactory;
-
-import com.gomo.minivideo.R;
-import com.jb.zcamera.imagefilter.util.ImageFilterTools;
 
 public class DawnFilter extends GPUImageMultiInputFilter {
 

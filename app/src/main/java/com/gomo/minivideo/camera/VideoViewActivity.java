@@ -3,12 +3,11 @@ package com.gomo.minivideo.camera;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.MediaController;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.VideoView;
 
-import com.gomo.minivideo.R;
+import com.pixelslab.stickerpe.R;
 
 public class VideoViewActivity extends AppCompatActivity {
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gomo.minivideo">
+    package="com.pixelslab.stickerpe">
 
     <supports-screens
         android:anyDensity="true"
@@ -29,7 +29,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
 
     <application
-        android:name=".CameraApp"
+        android:name="com.gomo.minivideo.CameraApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -37,7 +37,7 @@
         android:supportsRtl="true"
         android:theme="@style/CameraTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.gomo.minivideo.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
@@ -63,8 +63,8 @@
 
         <service android:name="com.jb.zcamera.camera.ProcessVideoService" />
 
-        <activity android:name=".camera.ShareActivity" />
-        <activity android:name=".camera.VideoViewActivity"></activity>
+        <activity android:name="com.gomo.minivideo.camera.ShareActivity" />
+        <activity android:name="com.gomo.minivideo.camera.VideoViewActivity" />
     </application>
 
 </manifest>

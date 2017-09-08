@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.text.TextUtils;
 
 import com.gomo.minivideo.CameraApp;
-import com.gomo.minivideo.R;
+import com.pixelslab.stickerpe.R;
 
 import java.io.Serializable;
 

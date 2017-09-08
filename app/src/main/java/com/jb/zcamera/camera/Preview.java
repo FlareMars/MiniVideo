@@ -15,11 +15,9 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.hardware.Camera;
 import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
-import android.location.Location;
 import android.media.CamcorderProfile;
 import android.media.ExifInterface;
 import android.media.MediaRecorder;
@@ -45,7 +43,6 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.gomo.minivideo.CameraApp;
-import com.gomo.minivideo.R;
 import com.gomo.minivideo.camera.CameraFragment;
 import com.jb.zcamera.exif.Exif;
 import com.jb.zcamera.exif.ExifTag;
@@ -67,6 +64,7 @@ import com.jb.zcamera.imagefilter.util.ImageFilterTools;
 import com.jb.zcamera.utils.BitmapUtils;
 import com.jb.zcamera.utils.DateMaskUtil;
 import com.jb.zcamera.utils.PhoneInfo;
+import com.pixelslab.stickerpe.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

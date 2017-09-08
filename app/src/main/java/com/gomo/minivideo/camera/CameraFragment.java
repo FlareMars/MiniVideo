@@ -34,10 +34,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gomo.minivideo.CameraApp;
-import com.gomo.minivideo.R;
 import com.jb.zcamera.camera.Preview;
 import com.jb.zcamera.camera.ProcessVideoService;
 import com.jb.zcamera.camera.SensorHelper;
@@ -53,6 +51,7 @@ import com.jb.zcamera.ui.DrawableOverlayImageView;
 import com.jb.zcamera.ui.MyHighlightView;
 import com.jb.zcamera.ui.drawable.StickerDrawable;
 import com.jb.zcamera.utils.BitmapUtils;
+import com.pixelslab.stickerpe.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;

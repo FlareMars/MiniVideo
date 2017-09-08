@@ -12,10 +12,10 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.gomo.minivideo.R;
 import com.jb.zcamera.folder.ExtSdcardUtils;
 import com.jb.zcamera.folder.FolderHelper;
 import com.jb.zcamera.utils.PhoneInfo;
+import com.pixelslab.stickerpe.R;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
