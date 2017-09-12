@@ -104,25 +104,42 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/download_button"
+    <RelativeLayout
+        android:id="@+id/download_button_rlyt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="27dp"
         android:layout_marginBottom="20dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/main_icon_bg_selector"
-        android:scaleType="centerInside"
-        android:src="@drawable/download"
-        />
+        android:layout_marginRight="15dp">
+        <ImageView
+            android:id="@+id/download_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/main_icon_bg_selector"
+            android:scaleType="centerInside"
+            android:src="@drawable/download"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/dot"/>
+    </RelativeLayout>
+
+
 
     <ImageView
         android:id="@+id/camera_change_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/download_button"
+        android:layout_below="@id/download_button_rlyt"
         android:layout_marginRight="15dp"
         android:layout_alignParentRight="true"
         android:background="@drawable/main_icon_bg_selector"
