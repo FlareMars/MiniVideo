@@ -54,28 +54,17 @@
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="2">
             <ImageView
                 android:id="@+id/background_button"
-                android:layout_width="@dimen/main_button_size"
-                android:layout_height="@dimen/main_button_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/gallery_icon"
                 />
         </FrameLayout>
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <ImageView
-                android:id="@+id/sticker_button"
-                android:layout_width="@dimen/main_button_size"
-                android:layout_height="@dimen/main_button_size"
-                android:layout_gravity="center"
-                android:src="@drawable/emoji_icon"
-                />
-        </FrameLayout>
+
 
         <ImageView
             android:id="@+id/take_video"
@@ -89,7 +78,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
-
+            <ImageView
+                android:id="@+id/sticker_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:src="@drawable/emoji_icon"
+                />
         </FrameLayout>
 
         <FrameLayout
@@ -99,8 +94,8 @@
 
             <ImageView
                 android:id="@+id/filter_button"
-                android:layout_width="@dimen/main_button_size"
-                android:layout_height="@dimen/main_button_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/main_filter_off_normal"
                 />
@@ -110,10 +105,25 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/camera_change_button"
-        android:layout_width="@dimen/main_icon_size"
-        android:layout_height="@dimen/main_icon_size"
+        android:id="@+id/download_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/main_icon_bg_selector"
+        android:scaleType="centerInside"
+        android:src="@drawable/download"
+        />
+
+    <ImageView
+        android:id="@+id/camera_change_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/download_button"
+        android:layout_marginRight="15dp"
         android:layout_alignParentRight="true"
         android:background="@drawable/main_icon_bg_selector"
         android:scaleType="centerInside"
