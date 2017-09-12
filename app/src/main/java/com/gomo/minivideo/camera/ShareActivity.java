@@ -2,7 +2,9 @@ package com.gomo.minivideo.camera;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -32,6 +34,8 @@ public class ShareActivity extends AppCompatActivity {
     private Button shareBtn;
     private Button installBtn;
 
+    //ShareDialog shareDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,26 +47,48 @@ public class ShareActivity extends AppCompatActivity {
         mTitleTv = (TextView) findViewById(R.id.title);
         shareBtn = (Button) findViewById(R.id.btn_share);
         installBtn = (Button) findViewById(R.id.btn_install);
-
         initViews();
     }
 
     private void initViews() {
-        mBackBtn.setImageResource(R.drawable.top_panel_back);
-        mBackBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        mTitleTv.setText("Share");
+//        mBackBtn.setImageResource(R.drawable.top_panel_back);
+//        mBackBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
+        mTitleTv.setText("SHARE");
+        //设置标题字体
+        AssetManager mgr=getAssets();
+        Typeface tf= Typeface.createFromAsset(mgr, "Sansation_Regular.ttf");
+        mTitleTv.setTypeface(tf);
 
         shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+//                Uri videoFileUri = Uri.parse("");
+//                ShareVideo builder = new ShareVideo.Builder()
+//                        .setLocalUrl(videoFileUri)
+//                        .build();
+//                ShareVideoContent content = new ShareVideoContent.Builder()
+//                        .setVideo(builder)
+//                        .build();
+//                ShareDialog.show(ShareActivity.this, content);
             }
         });
+
+//        if (ShareDialog.canShow(ShareLinkContent.class)) {
+//            ShareLinkContent linkContent = new ShareLinkContent.Builder()
+//                    .setContentTitle("Hello Facebook")
+//                    .setContentDescription(
+//                            "The 'Hello Facebook' sample  showcases simple Facebook integration")
+//                    .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
+//                    .build();
+//
+//            shareDialog.show(linkContent);
+//        }
 
         installBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,62 +5,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.gomo.minivideo.camera.ShareActivity"
-    android:background="#eeeeee">
+    android:background="#ffffff">
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/top_panel"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:background="#ffffff">
 
         <ImageView
             android:id="@+id/back"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
             android:scaleType="center"
             android:layout_marginLeft="4dp"
             android:layout_marginStart="4dp"
             android:layout_marginRight="20dp"
-            android:layout_marginEnd="20dp" />
+            android:layout_marginEnd="20dp"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="20sp"
-            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:gravity="center"
             android:maxLines="1"
-            android:ellipsize="end"/>
+            android:ellipsize="end" />
 
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="200dp"
-        android:layout_height="355dp"
+        android:id="@+id/image_view_bg"
+        android:layout_width="266dp"
+        android:layout_height="430dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/top_panel"
-        android:layout_marginTop="20dp"
         android:scaleType="fitXY"
+        android:background="@drawable/videobg"
         />
 
-    <Button
-        android:id="@+id/btn_share"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="Share"
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="255dp"
+        android:layout_height="419dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/top_panel"
+        android:layout_marginTop="5dp"
+        android:scaleType="fitXY"
+        android:background="#000"
         />
 
     <Button
         android:id="@+id/btn_install"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_share"
-        android:text="Install"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/install_btn"
+        />
+
+    <Button
+        android:id="@+id/btn_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_install"
+        android:background="@drawable/facebook_btn"
         />
 
 </RelativeLayout>
