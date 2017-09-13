@@ -3,10 +3,10 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         gomo {
-            keyAlias 'gomo'
-            keyPassword 'gomogomo'
-            storeFile file('../files/minivideo.jks')
-            storePassword 'gomogomo'
+            keyAlias 'gosms'
+            keyPassword '10La3g.cn'
+            storeFile file('../files/GOSmsKeyStore')
+            storePassword '10La3g.cn'
         }
     }
     compileSdkVersion 26
