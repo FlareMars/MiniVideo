@@ -20,4 +20,6 @@
     <string name="permission_camera_rationale">The Camera Permissions Are Requested!</string>
 
     <string name="ok">OK</string>
+
+    <string name="facebook_app_id">838112029691041</string>
 </resources>

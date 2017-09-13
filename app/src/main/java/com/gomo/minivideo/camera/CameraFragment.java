@@ -9,9 +9,11 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -87,6 +89,7 @@ public class CameraFragment extends Fragment {
     private TextView mVideoTime = null;
     private TextView mShowTextView = null;
     private ImageView mChangeCameraButton = null;
+    private ImageView mDownLoadButton = null;
     private ImageView mTakeVideoButton = null;
     private ImageView mCloseFiltersButton = null;
     private ImageView mCloseStickersButton = null;
@@ -255,6 +258,7 @@ public class CameraFragment extends Fragment {
         mTouchEventInterceptor = view.findViewById(R.id.touch_event_interceptor);
         mPreviewOverlay = view.findViewById(R.id.preview_overlay);
         mChangeCameraButton = view.findViewById(R.id.camera_change_button);
+        mDownLoadButton = view.findViewById(R.id.download_button);
         mTakeVideoButton = view.findViewById(R.id.take_video);
         mFiltersListView = view.findViewById(R.id.filter_list_view);
         mStickersListView = view.findViewById(R.id.sticker_list_view);
@@ -270,6 +274,7 @@ public class CameraFragment extends Fragment {
         mStickersButton = view.findViewById(R.id.sticker_button);
         mBackgroundsPanel = view.findViewById(R.id.panel_backgrounds);
         mBackgroundsButton = view.findViewById(R.id.background_button);
+
 
         initViews(savedInstanceState);
     }
